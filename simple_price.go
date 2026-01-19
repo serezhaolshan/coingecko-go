@@ -18,9 +18,6 @@ type SimplePriceParams struct {
 	IncludeLastUpdatedAt bool
 }
 
-// SimplePriceResponse represents the response from /simple/price endpoint
-// Structure: map[coinID]map[currency]value
-// Example: {"bitcoin": {"usd": 45000, "usd_market_cap": 850000000000}}
 type SimplePriceResponse map[string]map[string]any
 
 func (c *Client) GetSimplePrice(ctx context.Context, params SimplePriceParams) (SimplePriceResponse, error) {

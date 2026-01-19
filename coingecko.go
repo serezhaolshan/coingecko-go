@@ -13,9 +13,9 @@ import (
 	"golang.org/x/time/rate"
 )
 
-const DefaultURL = "https://api.coingecko.com/api/v3"
+const DefaultURL = "https://pro-api.coingecko.com/api/v3"
 
-const CustomKeyHeader = "x_cg_pro_api_key"
+const CustomKeyHeader = "x-cg-pro-api-key"
 
 const RateLimitMilliseconds = 120
 
