@@ -2,9 +2,35 @@ package coingecko
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"net/url"
 )
+
+type TVLValue struct {
+	USD float64
+}
+
+func (t *TVLValue) UnmarshalJSON(data []byte) error {
+	var obj struct {
+		USD float64 `json:"usd"`
+	}
+	if err := json.Unmarshal(data, &obj); err == nil {
+		t.USD = obj.USD
+		return nil
+	}
+
+	var val float64
+	if err := json.Unmarshal(data, &val); err != nil {
+		return err
+	}
+	t.USD = val
+	return nil
+}
+
+func (t TVLValue) MarshalJSON() ([]byte, error) {
+	return json.Marshal(t.USD)
+}
 
 type CoinParams struct {
 	ID            string
@@ -40,7 +66,7 @@ type ROI struct {
 
 type CoinMarketData struct {
 	CurrentPrice                           map[string]float64 `json:"current_price"`
-	TotalValueLocked                       *float64           `json:"total_value_locked,omitempty"`
+	TotalValueLocked                       *TVLValue          `json:"total_value_locked,omitempty"`
 	McapToTVLRatio                         *float64           `json:"mcap_to_tvl_ratio,omitempty"`
 	FdvToTVLRatio                          *float64           `json:"fdv_to_tvl_ratio,omitempty"`
 	ROI                                    *ROI               `json:"roi,omitempty"`
