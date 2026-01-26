@@ -6,16 +6,17 @@ import (
 )
 
 type GlobalData struct {
-	ActiveCryptocurrencies          int                `json:"active_cryptocurrencies"`
-	UpcomingICOs                    int                `json:"upcoming_icos"`
-	OngoingICOs                     int                `json:"ongoing_icos"`
-	EndedICOs                       int                `json:"ended_icos"`
-	Markets                         int                `json:"markets"`
-	TotalMarketCap                  map[string]float64 `json:"total_market_cap"`
-	TotalVolume                     map[string]float64 `json:"total_volume"`
-	MarketCapPercentage             map[string]float64 `json:"market_cap_percentage"`
-	MarketCapChangePercentage24hUSD float64            `json:"market_cap_change_percentage_24h_usd"`
-	UpdatedAt                       int64              `json:"updated_at"`
+	ActiveCryptocurrencies           int                `json:"active_cryptocurrencies"`
+	UpcomingICOs                     int                `json:"upcoming_icos"`
+	OngoingICOs                      int                `json:"ongoing_icos"`
+	EndedICOs                        int                `json:"ended_icos"`
+	Markets                          int                `json:"markets"`
+	TotalMarketCap                   map[string]float64 `json:"total_market_cap"`
+	TotalVolume                      map[string]float64 `json:"total_volume"`
+	MarketCapPercentage              map[string]float64 `json:"market_cap_percentage"`
+	MarketCapChangePercentage24hUSD  float64            `json:"market_cap_change_percentage_24h_usd"`
+	VolumeChangePercentage24hUSD     float64            `json:"volume_change_percentage_24h_usd"`
+	UpdatedAt                        int64              `json:"updated_at"`
 }
 
 type GlobalResponse struct {
