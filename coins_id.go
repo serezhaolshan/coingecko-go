@@ -32,6 +32,23 @@ func (t TVLValue) MarshalJSON() ([]byte, error) {
 	return json.Marshal(t.USD)
 }
 
+type FlexibleString string
+
+func (f *FlexibleString) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err == nil {
+		*f = FlexibleString(s)
+		return nil
+	}
+
+	var n float64
+	if err := json.Unmarshal(data, &n); err != nil {
+		return err
+	}
+	*f = FlexibleString(fmt.Sprintf("%.0f", n))
+	return nil
+}
+
 type CoinParams struct {
 	ID            string
 	DexPairFormat string
@@ -52,7 +69,7 @@ type CoinLinks struct {
 	AnnouncementURL             []string            `json:"announcement_url"`
 	TwitterScreenName           string              `json:"twitter_screen_name"`
 	FacebookUsername            string              `json:"facebook_username"`
-	BitcoinTalkThreadIdentifier string              `json:"bitcointalk_thread_identifier"`
+	BitcoinTalkThreadIdentifier FlexibleString      `json:"bitcointalk_thread_identifier"`
 	TelegramChannelIdentifier   string              `json:"telegram_channel_identifier"`
 	SubredditURL                string              `json:"subreddit_url"`
 	ReposURL                    map[string][]string `json:"repos_url"`
