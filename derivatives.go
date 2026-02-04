@@ -19,7 +19,7 @@ type DerivativesTicker struct {
 	OpenInterest             *float64 `json:"open_interest"`
 	Volume24h                *float64 `json:"volume_24h"`
 	LastTradedAt             int64    `json:"last_traded_at"`
-	ExpiredAt                *string  `json:"expired_at"`
+	ExpiredAt                *int64   `json:"expired_at"`
 }
 
 func (c *Client) GetDerivativesTickers(ctx context.Context) ([]DerivativesTicker, error) {
