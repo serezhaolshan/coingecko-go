@@ -2,11 +2,13 @@ package coingecko
 
 import (
 	"context"
+	"os"
 	"testing"
 )
 
 func TestGetDerivativesTickers(t *testing.T) {
-	client := NewClient(DefaultURL, "")
+	apiKey := os.Getenv("COINGECKO_API_KEY")
+	client := NewClient(DefaultURL, apiKey)
 
 	tickers, err := client.GetDerivativesTickers(context.Background())
 	if err != nil {
@@ -27,7 +29,8 @@ func TestGetDerivativesTickers(t *testing.T) {
 }
 
 func TestGetDerivativesTickersByIndexID(t *testing.T) {
-	client := NewClient(DefaultURL, "")
+	apiKey := os.Getenv("COINGECKO_API_KEY")
+	client := NewClient(DefaultURL, apiKey)
 
 	tickers, err := client.GetDerivativesTickersByIndexID(context.Background(), "BTC")
 	if err != nil {
@@ -46,7 +49,8 @@ func TestGetDerivativesTickersByIndexID(t *testing.T) {
 }
 
 func TestGetAggregatedDerivativesData(t *testing.T) {
-	client := NewClient(DefaultURL, "")
+	apiKey := os.Getenv("COINGECKO_API_KEY")
+	client := NewClient(DefaultURL, apiKey)
 
 	data, err := client.GetAggregatedDerivativesData(context.Background(), "BTC")
 	if err != nil {
